@@ -33,7 +33,7 @@ on:
 
 env:
   AWS_REGION: eu-west-1                 # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: github-actions          # set this to your Amazon ECR repository name
+  ECR_REPOSITORY: github-actions:jeroenve          # set this to your Amazon ECR repository name
   TAG: jeroenve
 
 permissions:
@@ -84,5 +84,5 @@ jobs:
       run: |
         # Push it to ECR so that it can
         # be deployed to ECS.
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG:$TAG
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG:
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG:$TAG"
