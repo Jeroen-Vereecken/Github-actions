@@ -86,3 +86,10 @@ jobs:
         # be deployed to ECS.
         docker push $ECR_REGISTRY/$ECR_REPOSITORY
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG:$TAG"
+        
+    - name: Deploy AWS APP RUNNER
+      id: deploy-runner
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      run: |
+        aws apprunner start-deployment --service-arn arn:aws:apprunner:eu-west-1:930970667460:service/jeroenve/0303d5b682c746c39db45c33bb2ba110
